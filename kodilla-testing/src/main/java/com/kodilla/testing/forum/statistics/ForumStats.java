@@ -8,12 +8,9 @@ public class ForumStats {
     private double averagePostsOnUser;
     private double averageCommentsOnUser;
     private double averageCommentsOnPost;
-    private Statistics statistics;
 
     public ForumStats(Statistics statistics) {
-        this.statistics = statistics;
     }
-
     public void calculateAdvStatistics(Statistics statistics) {
         userNumber = statistics.usersNames().size();
         postNumber = statistics.postsCount();
