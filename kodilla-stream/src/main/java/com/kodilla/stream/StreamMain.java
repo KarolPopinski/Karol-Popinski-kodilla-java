@@ -1,8 +1,5 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-
-
 public class StreamMain {
 
     public static void main(String[] args) {
@@ -21,6 +18,7 @@ public class StreamMain {
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
         expressionExecutor.executeExpression(3,4, FunctionalCalculator::divideAByB);*/
 
+        /* Task 7.1 Text beautifier
         PoemBeautifier poemBeautifier = new PoemBeautifier();
         String sthText = "Good morning Vietnam!";
 
@@ -28,5 +26,13 @@ public class StreamMain {
         poemBeautifier.beautify(sthText, (text -> text.toUpperCase()));
         poemBeautifier.beautify(sthText, (text -> text.substring(13)));
         poemBeautifier.beautify(sthText, (text -> text.replace("Good", "Gooooooooooooooooooooooood") + " !!!!!!!!!!!"));
+         */
+
+        /* first example for Stream use
+
+        System.out.println("Using Stream to generate even numbers from 1 to 20");
+        NumbersGenerator.generateEven(20);
+         */
+
     }
 }
