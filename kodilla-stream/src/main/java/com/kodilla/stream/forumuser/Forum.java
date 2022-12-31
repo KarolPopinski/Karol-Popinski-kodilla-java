@@ -8,7 +8,7 @@ public final class Forum {
     private final List<ForumUser> theForumUserList = new ArrayList<>();
 
     public Forum() {
-        theForumUserList.add(new ForumUser("XBold28", 'M', 1, 10101, 1990, 12, 20));
+        theForumUserList.add(new ForumUser("XBold28", 'M', 1, 10101, 2002, 12, 30));
         theForumUserList.add(new ForumUser("jenny78", 'F', 10, 10102, 1985, 10, 5));
         theForumUserList.add(new ForumUser("ToonyX", 'M', 95, 10103, 1965, 5, 28));
         theForumUserList.add(new ForumUser("SweetEmy", 'F', 5, 10104, 2000, 7, 10));
