@@ -49,12 +49,11 @@ void testGetPeopleQuantity() {
         world.addContinent(continent2);
         world.addContinent(continent3);
 
-        BigDecimal expPopultaion = new BigDecimal("3580955329");
-
         //When
         BigDecimal populationOfWorld = world.getPeopleQuantity();
 
         //Then
+        BigDecimal expPopultaion = new BigDecimal("3580955329");
         assertEquals(expPopultaion, populationOfWorld);
     }
 }
