@@ -1,15 +1,34 @@
 package com.kodilla.stream.portfolio;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("Board Tests")
 class BoardTestSuite {
+
+    private static int testCounter = 0;
+
+    @BeforeAll
+    public static void beforeAllTests() {
+        System.out.println("This is the beginning of tests.");
+    }
+
+    @AfterAll
+    public static void afterAllTests() {
+        System.out.println("All tests are finished.");
+    }
+
+    @BeforeEach
+    public void beforeEveryTest() {
+        testCounter++;
+        System.out.println("Preparing to execute test#" + testCounter);
+    }
 
     @Test
     void testAddTaskList() {
@@ -84,6 +103,27 @@ class BoardTestSuite {
     }
 
     @Test
+    void testAddTaskListAverageWorkingOnTask() {
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+
+        double average = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tip -> tip.getTasks().stream())
+                .map(Task::getCreated)
+                .mapToLong(d -> (ChronoUnit.DAYS.between(d, LocalDate.now())))
+                .average().getAsDouble();
+
+        //Then
+        assertEquals(10, average);
+    }
+    /* Wyszukiwanie zadań użytkownika
+
+    @Test
     void testAddTaskListFindUsersTasks() {
         //Given
         Board project = prepareTestData();
@@ -99,7 +139,9 @@ class BoardTestSuite {
         assertEquals(2, tasks.size());
         assertEquals(user, tasks.get(0).getAssignedUser());
         assertEquals(user, tasks.get(1).getAssignedUser());
-    }
+    } */
+
+    /* Wyszukiwanie przeterminowanych zadań
 
     @Test
     void testAddTaskListFindOutdatedTasks() {
@@ -120,7 +162,9 @@ class BoardTestSuite {
         //Then
         assertEquals(1, tasks.size());
         assertEquals("HQLs for analysis", tasks.get(0).getTitle());
-    }
+    } */
+
+    /* Obliczanie ilości zadań wykonywanych co najmniej od 10 dni
 
     @Test
     void testAddTaskListFindLongTasks() {
@@ -140,7 +184,9 @@ class BoardTestSuite {
 
         //Then
         assertEquals(2, longTasks);
-    }
+    } */
+
+    /* Wersja z VAR zadania: Obliczanie ilości zadań wykonywanych co najmniej od 10 dni
 
     @Test
     void testAddTaskListFindLongTasksWithVar() {
@@ -160,5 +206,5 @@ class BoardTestSuite {
 
         //Then
         assertEquals(2, longTasks);
-    }
+    } */
 }
