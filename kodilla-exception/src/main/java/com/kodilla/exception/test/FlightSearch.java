@@ -20,7 +20,7 @@ public class FlightSearch {
 
         if (airportsMap.containsKey(arrivals)) {
             Boolean isAirportAvailable = airportsMap.get(arrivals);
-            if (isAirportAvailable != true) {
+            if (!isAirportAvailable) {
                 System.out.println("We're sorry, but your destination airport: "+arrivals+" is not available at the moment.");
             } else {
                 System.out.println("All OK, selected destination airport: "+arrivals+" is available.");
