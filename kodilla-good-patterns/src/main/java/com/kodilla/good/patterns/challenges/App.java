@@ -1,13 +1,9 @@
 package com.kodilla.good.patterns.challenges;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 public class App {
 
     public static void main(String[] args) {
-
+/*
         MovieStore movieStore = new MovieStore();
 
         Map<String, List<String>> movies = movieStore.getMovies();
@@ -19,4 +15,14 @@ public class App {
 
         System.out.println(moviesTitles);
     }
+     */
+
+    OrdersBuffer ordersBuffer = new OrdersBuffer();
+    OrderRequest orderRequest = ordersBuffer.orderIn();
+
+    OrderProcessor orderProcessor = new OrderProcessor(new EmailService(), new ProductOrderService(), new ItemOrderRepository());
+    orderProcessor.process(orderRequest);
+
+    }
 }
+
