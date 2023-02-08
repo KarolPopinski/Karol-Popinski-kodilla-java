@@ -63,11 +63,7 @@ public class ExtraFoodShop implements Supplier {
                 if (order.getQuantity() <= product.getQuantity())
                     productFound = true;
         }
-        if (productFound) {
-            return true;
-        } else {
-            return false;
-        }
+        return productFound;
     }
 
     private void stockReduction(OrderRequest order) {
