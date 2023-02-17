@@ -1,15 +1,17 @@
 package com.kodilla.patterns.singleton;
 
-public class Logger {
+public enum Logger {
 
-    private String lastlog = "";
+    INSTANCE;
+
+    private String lastLog = "";
 
     public void log(String log) {
-        lastlog = log;
+        lastLog = log;
         System.out.println("Log: [" + log + "]");
     }
 
-    public String getLastlog() {
-        return lastlog;
+    public String getLastLog() {
+        return lastLog;
     }
 }
