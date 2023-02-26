@@ -63,4 +63,7 @@ class DbManagerTestSuite {
         statement.close();
         assertEquals(15, counter);
     }
+    @Test
+    void atestdlatestu(){
+    }
 }
