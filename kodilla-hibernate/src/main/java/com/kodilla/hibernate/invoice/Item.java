@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 @Table(name = "ITEM")
 public class Item {
 
-    int id;
-    Product product;
-    BigDecimal price;
-    int quantity;
-    BigDecimal value;
+    private int id;
+    private Product product;
+    private BigDecimal price;
+    private int quantity;
+    private BigDecimal value;
     private Invoice invoice;
 
     public Item(){

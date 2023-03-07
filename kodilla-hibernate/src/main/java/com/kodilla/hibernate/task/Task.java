@@ -5,9 +5,31 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "Task.retrieveLongTasks",
+                query = "FROM Task WHERE duration > 10"
+        ),
+        @NamedQuery(
+                name = "Task.retrieveShortTasks",
+                query = "FROM Task WHERE duration <= 10"
+        ),
+        @NamedQuery(
+                name = "Task.retrieveTasksWithDurationLongerThan",
+                query = "FROM Task WHERE duration > :DURATION"
+        )
+})
+
+@NamedNativeQuery(
+        name = "Task.retrieveTasksWithEnoughTime",
+        query = "SELECT * FROM TASKS" +
+                " WHERE DATEDIFF(DATE_ADD(CREATED, INTERVAL DURATION DAY), NOW()) > 5",
+        resultClass = Task.class
+)
+
 @Entity
 @Table(name = "TASKS")
-public class Task {
+public final class Task {
 
     private int id;
     private String description;
@@ -24,6 +46,7 @@ public class Task {
         this.created = new Date();
         this.duration = duration;
     }
+
     @Id
     @GeneratedValue
     @NotNull
@@ -36,12 +59,14 @@ public class Task {
     public String getDescription() {
         return description;
     }
+
     @NotNull
-    @Column(name = "CREATED")
+    @Column(name="CREATED")
     public Date getCreated() {
         return created;
     }
-    @Column(name = "DURATION")
+
+    @Column(name="DURATION")
     public int getDuration() {
         return duration;
     }
@@ -54,15 +79,17 @@ public class Task {
         this.description = description;
     }
 
-        private void setCreated(Date created) {
+    private void setCreated(Date created) {
         this.created = created;
     }
 
     private void setDuration(int duration) {
         this.duration = duration;
     }
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "TASKS_FINANCIALS_ID")
+    @JoinColumn(name = "TASK_FINANCIALS_ID")
+
     public TaskFinancialDetails getTaskFinancialDetails() {
         return taskFinancialDetails;
     }
@@ -70,6 +97,7 @@ public class Task {
     public void setTaskFinancialDetails(TaskFinancialDetails taskFinancialDetails) {
         this.taskFinancialDetails = taskFinancialDetails;
     }
+
     @ManyToOne
     @JoinColumn(name = "TASKLIST_ID")
     public TaskList getTaskList() {
